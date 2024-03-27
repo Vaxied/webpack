@@ -3,6 +3,7 @@
 // Importing the mode path from node
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -26,6 +27,17 @@ module.exports = {
                     loader: 'babel-loader',
                 },
             },
+            {
+                test: /\.css|\.styl$/i,
+                // Loading through an array, not an object. (Depends on the plugin)
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    // to load css
+                    'css-loader',
+                    // to load a css preprocessor
+                    'stylus-loader',
+                ],
+            },
         ],
     },
     plugins: [
@@ -34,5 +46,6 @@ module.exports = {
             template: './public/index.html',
             filename: 'index.html',
         }),
+        new MiniCssExtractPlugin(),
     ],
 }
