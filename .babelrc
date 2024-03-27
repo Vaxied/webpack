@@ -1,0 +1,6 @@
+{
+    // latest ecmascript
+    "presets": ["@babel/preset-env"],
+    // for using asyncronism... i.e: async/await
+    "plugins": ["@babel/plugin-transform-runtime"]
+}

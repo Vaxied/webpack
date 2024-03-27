@@ -12,4 +12,19 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
     },
+    // Load a module
+    module: {
+        rules: [
+            {
+                //select which files will the loader compile
+                test: /\.m?js$/,
+                // excluding files/folders
+                exclude: /node_modules/,
+                // sets which loader to use
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
+        ],
+    },
 }
