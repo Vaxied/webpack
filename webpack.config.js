@@ -11,6 +11,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
+        assetModuleFilename: 'assets/images/[hash][ext]',
     },
     resolve: {
         extensions: ['.js'],
@@ -38,6 +39,10 @@ module.exports = {
                     // to load a css preprocessor
                     'stylus-loader',
                 ],
+            },
+            {
+                test: /\.png/,
+                type: 'asset/resource',
             },
         ],
     },
