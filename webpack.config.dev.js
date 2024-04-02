@@ -20,6 +20,7 @@ module.exports = {
     // optimization: {
     //     minimize: true,
     // },
+    watch: true,
     resolve: {
         extensions: ['.js'],
         alias: {
