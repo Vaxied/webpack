@@ -4,17 +4,27 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+// const CopyPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        assetModuleFilename: 'assets/images/[hash][ext]',
+        assetModuleFilename: 'assets/[hash][ext]',
+    },
+    optimization: {
+        minimize: true,
     },
     resolve: {
         extensions: ['.js'],
+        alias: {
+            '@images': path.resolve(__dirname, 'src/assets/images'),
+            '@templates': path.resolve(__dirname, 'src/templates/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@utils': path.resolve(__dirname, 'src/utils/'),
+        },
     },
     // Load a module
     module: {
@@ -41,10 +51,15 @@ module.exports = {
                 ],
             },
             {
+                // loading images
                 test: /\.png/,
                 type: 'asset/resource',
+                generator: {
+                    filename: 'assets/images/[hash][ext][query]',
+                },
             },
             {
+                // loading fonts
                 test: /\.(woff2|woff)$/,
                 type: 'asset/resource',
                 generator: {
@@ -60,13 +75,14 @@ module.exports = {
             filename: 'index.html',
         }),
         new MiniCssExtractPlugin(),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src', 'assets/images'),
-                    to: 'assets/images',
-                },
-            ],
-        }),
+        // new CopyPlugin({
+        //     patterns: [
+        //         {
+        //             from: path.resolve(__dirname, 'src', 'assets/images'),
+        //             to: 'assets/images',
+        //         },
+        //     ],
+        // }),
+        new Dotenv(),
     ],
 }
