@@ -13,7 +13,9 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
         assetModuleFilename: 'assets/[hash][ext]',
+        clean: true,
     },
+    mode: 'production',
     optimization: {
         minimize: true,
     },

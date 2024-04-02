@@ -13,6 +13,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
         // assetModuleFilename: 'assets/[name][ext]',
+        clean: true,
     },
     mode: 'development',
     // We don't need to optimize in dev mode
