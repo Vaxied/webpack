@@ -105,3 +105,6 @@ dist
 
 # Dist folder
 dist/
+
+# stats file
+stats.json
