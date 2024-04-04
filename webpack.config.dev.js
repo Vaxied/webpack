@@ -20,7 +20,14 @@ module.exports = {
     // optimization: {
     //     minimize: true,
     // },
-    watch: true,
+    // watch: true,
+    devServer: {
+        static: path.join(__dirname, 'dist'),
+        compress: true,
+        historyApiFallback: true,
+        port: 3080,
+        open: true,
+    },
     resolve: {
         extensions: ['.js'],
         alias: {
